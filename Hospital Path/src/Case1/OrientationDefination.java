@@ -1,4 +1,4 @@
-package Case1;
+package case1;
 
 public class OrientationDefination {
 
