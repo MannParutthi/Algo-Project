@@ -3,9 +3,10 @@ package case1;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class FeasibleGraphOrientation {
 	
@@ -20,21 +21,58 @@ public class FeasibleGraphOrientation {
 				String node = arr[0].trim();
 				String[] edges = arr[1].trim().split(" ");
 				
+				if(hashMap.get(node) == null) {
+					hashMap.put(node, new ArrayList<String>());	
+				}
+				
 				for(int i=0; i<edges.length; i++) {
-					if(hashMap.get(node) == null) {
-						hashMap.put(node, new ArrayList<String>());	
-					}
 					hashMap.get(node).add(edges[i]);
 				}
 			}
 			
-			hashMap.forEach((k, v) -> System.out.println(k + " : "+ v));
+			boolean isGraphStronglyConnected = true;
+			
+			for(Entry<String, ArrayList<String>> set : hashMap.entrySet()) {
+				String node = set.getKey();
+				ArrayList<String> edges = set.getValue();
+			    System.out.println(node + " = " + edges);
+			    
+			    if (hashMap.size() != DFS(node, hashMap).size()) {
+					isGraphStronglyConnected = false;
+					break;
+				}
+			}
+			
+			System.out.println("isGraphStronglyConnected ==> " + isGraphStronglyConnected);
 			
 			sc.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public static ArrayList<String> DFS(String startNode, HashMap<String, ArrayList<String>> hashMap) {
+		ArrayList<String> path = new ArrayList<String>();
+		ArrayList<String> visitedNodes = new ArrayList<String>();
+		Stack<String> stack = new Stack<String>();
+		
+		visitedNodes.add(startNode);
+		stack.push(startNode);
+		
+		while(!stack.isEmpty()) {
+			String poppedNode = stack.pop();
+			path.add(poppedNode);
+			for (String adjacentNode : hashMap.get(poppedNode)) {
+				if(!visitedNodes.contains(adjacentNode)) {
+					visitedNodes.add(adjacentNode);
+					stack.push(adjacentNode);
+				}
+			}
+		}
+		System.out.println(startNode + ":" + path);
+		return path;
 	}
 	
 
