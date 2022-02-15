@@ -3,6 +3,7 @@ package case1;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Scanner;
@@ -29,7 +30,7 @@ public class Case1GraphImpl {
 					hashMap.get(node).add(edges[i]);
 				}
 			}
-			System.out.println("HashMap of Graph ==> " + hashMap);
+			System.out.println("Adjacency List of Graph ==> " + hashMap);
 			
 			System.out.println("Graph is Feasible ==> " + isGraphFeasible(hashMap));
 			
@@ -66,7 +67,9 @@ public class Case1GraphImpl {
 		while(!stack.isEmpty()) {
 			String poppedNode = stack.pop();
 			path.add(poppedNode);
-			for (String adjacentNode : hashMap.get(poppedNode)) {
+			hashMap.get(poppedNode).sort(Comparator.reverseOrder());
+			ArrayList<String> adjacentNodes = hashMap.get(poppedNode);
+			for (String adjacentNode : adjacentNodes ) {
 				if(!visitedNodes.contains(adjacentNode)) {
 					visitedNodes.add(adjacentNode);
 					stack.push(adjacentNode);
