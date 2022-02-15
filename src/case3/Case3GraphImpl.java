@@ -1,16 +1,16 @@
-package case1;
+package case3;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.Map.Entry;
 
-public class Case1GraphImpl {
-	
+public class Case3GraphImpl {
+
 	public static void main(String args[]) {
 		try {
 			Scanner sc = new Scanner(new FileInputStream("InputMap1"));
@@ -34,7 +34,8 @@ public class Case1GraphImpl {
 			
 			System.out.println("Graph is Feasible ==> " + isGraphFeasible(hashMap));
 			
-			System.out.println("Directed Path of Graph ==> " + DFS("A", hashMap, true));
+			System.out.println("Directed Covid Path of Graph ==> " + DFS("A", hashMap, true, true));
+			System.out.println("Directed Non Covid Path of Graph ==> " + DFS("A", hashMap, false, true));
 			
 			sc.close();
 		} catch (FileNotFoundException e) {
@@ -47,7 +48,7 @@ public class Case1GraphImpl {
 		
 		for(Entry<String, ArrayList<String>> set : hashMap.entrySet()) {
 			String node = set.getKey();
-		    if (hashMap.size() != DFS(node, hashMap, false).size()) {
+		    if (hashMap.size() != DFS(node, hashMap, true, false).size()) {
 				isGraphStronglyConnected = false;
 				break;
 			}
@@ -56,7 +57,7 @@ public class Case1GraphImpl {
 		return isGraphStronglyConnected;
 	}
 	
-	public static ArrayList<String> DFS(String startNode, HashMap<String, ArrayList<String>> hashMap, boolean pathway) {
+	public static ArrayList<String> DFS(String startNode, HashMap<String, ArrayList<String>> hashMap, boolean reverse, boolean pathway) {
 		ArrayList<String> path = new ArrayList<String>();
 		ArrayList<String> visitedNodes = new ArrayList<String>();
 		Stack<String> stack = new Stack<String>();
@@ -67,7 +68,12 @@ public class Case1GraphImpl {
 		while(!stack.isEmpty()) {
 			String poppedNode = stack.pop();
 			path.add(poppedNode);
-			hashMap.get(poppedNode).sort(Comparator.reverseOrder());
+			if(reverse) {
+				hashMap.get(poppedNode).sort(Comparator.reverseOrder());
+			}
+			else {
+				hashMap.get(poppedNode).sort(Comparator.naturalOrder());
+			}
 			ArrayList<String> adjacentNodes = hashMap.get(poppedNode);
 			for (String adjacentNode : adjacentNodes ) {
 				if(!visitedNodes.contains(adjacentNode)) {
