@@ -34,8 +34,8 @@ public class Case3GraphImpl {
 			
 			System.out.println("Graph is Feasible ==> " + isGraphFeasible(hashMap));
 			
-			System.out.println("Directed Covid Path of Graph ==> " + DFS("A", hashMap, true, true));
-			System.out.println("Directed Non Covid Path of Graph ==> " + DFS("A", hashMap, false, true));
+			System.out.println("Directed Covid Path of Graph ==> " + DFS("A0", hashMap, true, true));
+			System.out.println("Directed Non Covid Path of Graph ==> " + DFS("A0", hashMap, false, true));
 			
 			sc.close();
 		} catch (FileNotFoundException e) {

@@ -34,7 +34,7 @@ public class Case1GraphImpl {
 			
 			System.out.println("Graph is Feasible ==> " + isGraphFeasible(hashMap));
 			
-			System.out.println("Directed Path of Graph ==> " + DFS("A", hashMap, true));
+			System.out.println("Directed Path of Graph ==> " + DFS("A0", hashMap, true));
 			
 			sc.close();
 		} catch (FileNotFoundException e) {
@@ -67,8 +67,6 @@ public class Case1GraphImpl {
 		while(!stack.isEmpty()) {
 			String poppedNode = stack.pop();
 			path.add(poppedNode);
-			System.out.println("poppedNode ==> "+ poppedNode);
-			System.out.println("hashMap.get(poppedNode) ==> " + hashMap.get(poppedNode));
 			hashMap.get(poppedNode).sort(Comparator.reverseOrder());
 			ArrayList<String> adjacentNodes = hashMap.get(poppedNode);
 			for (String adjacentNode : adjacentNodes ) {
