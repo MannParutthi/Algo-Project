@@ -46,9 +46,6 @@ public class Case1GraphImpl {
 		
 		for(Entry<String, ArrayList<String>> set : hashMap.entrySet()) {
 			String node = set.getKey();
-			ArrayList<String> edges = set.getValue();
-		    System.out.println(node + " = " + edges);
-		    
 		    if (hashMap.size() != DFS(node, hashMap).size()) {
 				isGraphStronglyConnected = false;
 				break;
@@ -76,7 +73,6 @@ public class Case1GraphImpl {
 				}
 			}
 		}
-		System.out.println(startNode + ":" + path);
 		return path;
 	}
 	
