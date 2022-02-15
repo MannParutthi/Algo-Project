@@ -3,7 +3,9 @@ package case1;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Stack;
@@ -35,7 +37,7 @@ public class FeasibleGraphOrientation {
 			for(Entry<String, ArrayList<String>> set : hashMap.entrySet()) {
 				String node = set.getKey();
 				ArrayList<String> edges = set.getValue();
-			    System.out.println(node + " = " + edges);
+			    System.out.println(set.getKey() + " = " + set.getValue());
 			    
 			    if (hashMap.size() != DFS(node, hashMap).size()) {
 					isGraphStronglyConnected = false;
