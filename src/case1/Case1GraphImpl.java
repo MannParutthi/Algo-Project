@@ -31,7 +31,7 @@ public class Case1GraphImpl {
 			}
 			System.out.println("HashMap of Graph ==> " + hashMap);
 			
-			System.out.println("isGraphStronglyConnected ==> " + isGraphFeasible(hashMap));
+			System.out.println("Graph is Feasible ==> " + isGraphFeasible(hashMap));
 			
 			System.out.println("Directed Path of Graph ==> " + DFS("A", hashMap));
 			
