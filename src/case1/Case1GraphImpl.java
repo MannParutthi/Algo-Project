@@ -81,7 +81,7 @@ public class Case1GraphImpl {
 	}
 
 
-	public static ArrayList<String> getPath(String startNode, HashMap<String, ArrayList<String>> hashMap) {
+	public static String getPath(String startNode, HashMap<String, ArrayList<String>> hashMap) {
 		ArrayList<String> dfsPath = new ArrayList<String>();
 		ArrayList<String> visitedNodes = new ArrayList<String>();
 		Stack<String> stack = new Stack<String>();
@@ -116,8 +116,20 @@ public class Case1GraphImpl {
 		}
 		finalPath.add(startNode);
 
-		return finalPath;
+		return displayPath(finalPath);
 	}
 	
+	public static String displayPath(ArrayList<String> path) {
+		String display = "";
+
+		for(int i=0; i<path.size(); i++) {
+			display += path.get(i);
+			if( i != path.size()-1) {
+				display += " -> ";
+			};
+		}
+
+		return display;
+	}
 
 }
