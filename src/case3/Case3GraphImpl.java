@@ -13,7 +13,7 @@ public class Case3GraphImpl {
 
 	public static void main(String args[]) {
 		try {
-			Scanner sc = new Scanner(new FileInputStream("InputMap1"));
+			Scanner sc = new Scanner(new FileInputStream("InputMap2"));
 			HashMap<String, ArrayList<String>> hashMap = new HashMap<String, ArrayList<String>>();
 			
 			while(sc.hasNext()) {

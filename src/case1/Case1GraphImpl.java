@@ -13,7 +13,7 @@ public class Case1GraphImpl {
 	
 	public static void main(String args[]) {
 		try {
-			Scanner sc = new Scanner(new FileInputStream("InputMap1"));
+			Scanner sc = new Scanner(new FileInputStream("InputMap2"));
 			HashMap<String, ArrayList<String>> hashMap = new HashMap<String, ArrayList<String>>();
 			
 			while(sc.hasNext()) {
@@ -67,6 +67,8 @@ public class Case1GraphImpl {
 		while(!stack.isEmpty()) {
 			String poppedNode = stack.pop();
 			path.add(poppedNode);
+			System.out.println("poppedNode ==> "+ poppedNode);
+			System.out.println("hashMap.get(poppedNode) ==> " + hashMap.get(poppedNode));
 			hashMap.get(poppedNode).sort(Comparator.reverseOrder());
 			ArrayList<String> adjacentNodes = hashMap.get(poppedNode);
 			for (String adjacentNode : adjacentNodes ) {
